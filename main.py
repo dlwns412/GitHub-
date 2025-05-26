@@ -1,24 +1,26 @@
 # 저장소
 import gdown
-# Google Drive URL
-file_url = 'https://drive.google.com/uc?export=download&id=1pwfON6doXyH5p7AOBJPfiofYlni0HVVY'
-
-# 다운로드할 파일명 지정
-output = 'data.csv'
-
-# gdown을 이용하여 파일 다운로드
-gdown.download(file_url, output, quiet=False)
 import pandas as pd
 import plotly.express as px
 
-# CSV 파일 읽기
-df = pd.read_csv('data.csv')
+# Google Drive 파일 다운로드 (gdown 사용)
+file_url = 'https://drive.google.com/uc?export=download&id=1pwfON6doXyH5p7AOBJPfiofYlni0HVVY'
+output = 'data.csv'
 
-# 데이터의 첫 5줄을 확인
-print(df.head())
+# gdown을 사용해 파일 다운로드
+gdown.download(file_url, output, quiet=False)
 
-# 예시: Scatter plot (x와 y를 실제 컬럼으로 바꿔야 합니다)
-fig = px.scatter(df, x='x_column', y='y_column', title='Scatter Plot Example')
+# CSV 파일을 pandas로 읽기
+df = pd.read_csv(output)
+
+# 데이터 확인 (Streamlit 사용 시)
+import streamlit as st
+st.write("### 데이터 미리보기")
+st.write(df.head())  # 데이터 첫 5줄을 출력
+
+# Plotly 시각화 예시
+fig = px.scatter(df, x='x_column', y='y_column', title="Scatter Plot Example")
+st.plotly_chart(fig)
 
 # 시각화 출력
 fig.show()
