@@ -1,3 +1,57 @@
 # 저장소
-pip install plotly streamlit pandas gdown
-pip list
+pip install gdown
+import gdown
+
+# Google Drive URL
+file_url = 'https://drive.google.com/uc?export=download&id=1pwfON6doXyH5p7AOBJPfiofYlni0HVVY'
+
+# 다운로드할 파일명 지정
+output = 'data.csv'
+
+# gdown을 이용하여 파일 다운로드
+gdown.download(file_url, output, quiet=False)
+import pandas as pd
+import plotly.express as px
+
+# CSV 파일 읽기
+df = pd.read_csv('data.csv')
+
+# 데이터의 첫 5줄을 확인
+print(df.head())
+
+# 예시: Scatter plot (x와 y를 실제 컬럼으로 바꿔야 합니다)
+fig = px.scatter(df, x='x_column', y='y_column', title='Scatter Plot Example')
+
+# 시각화 출력
+fig.show()
+pip install streamlit
+import streamlit as st
+import pandas as pd
+import plotly.express as px
+import gdown
+
+# Google Drive 파일 다운로드
+file_url = 'https://drive.google.com/uc?export=download&id=1pwfON6doXyH5p7AOBJPfiofYlni0HVVY'
+output = 'data.csv'
+gdown.download(file_url, output, quiet=False)
+
+# CSV 파일 읽기
+df = pd.read_csv(output)
+
+# 데이터 확인
+st.write("### 데이터 미리보기")
+st.write(df.head())  # 데이터 첫 5줄을 출력
+
+# Plotly 시각화 예시
+fig = px.scatter(df, x='x_column', y='y_column', title="Scatter Plot Example")
+st.plotly_chart(fig)
+streamlit run app.py
+git init
+git add .
+git commit -m "Initial commit"
+git remote add origin <YOUR_GITHUB_REPO_URL>
+git push -u origin master
+streamlit
+plotly
+pandas
+gdown
