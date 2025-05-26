@@ -1,7 +1,5 @@
 # 저장소
-pip install gdown
 import gdown
-
 # Google Drive URL
 file_url = 'https://drive.google.com/uc?export=download&id=1pwfON6doXyH5p7AOBJPfiofYlni0HVVY'
 
